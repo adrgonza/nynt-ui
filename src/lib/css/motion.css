@@ -1,0 +1,7 @@
+/* Quiet colour changes only, as in the nynt panel. */
+.ds :is(.ds-btn, .ds-ib, .ds-pill, .ds-field, .ds-row, .ds-powered) {
+	transition:
+		background-color var(--ds-duration-fast) var(--ds-ease),
+		color var(--ds-duration-fast) var(--ds-ease),
+		box-shadow var(--ds-duration-fast) var(--ds-ease);
+}

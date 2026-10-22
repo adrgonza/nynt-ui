@@ -1,0 +1,66 @@
+{
+	"name": "nynt-ui",
+	"version": "0.1.0",
+	"description": "The NYNT design system: tokens scoped to .ds, Svelte 5 components, framework agnostic CSS classes and React bindings.",
+	"license": "UNLICENSED",
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/adrgonza/nynt-ui.git"
+	},
+	"scripts": {
+		"build": "svelte-package -i src/lib -o dist && publint",
+		"check": "svelte-check --tsconfig ./tsconfig.json"
+	},
+	"files": [
+		"dist"
+	],
+	"sideEffects": [
+		"**/*.css"
+	],
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./react": {
+			"types": "./dist/react/index.d.ts",
+			"default": "./dist/react/index.js"
+		},
+		"./css": "./dist/css/index.css",
+		"./fonts.css": "./dist/css/fonts.css",
+		"./tokens.css": "./dist/css/tokens.css",
+		"./components.css": "./dist/css/components.css",
+		"./motion.css": "./dist/css/motion.css",
+		"./nomotion.css": "./dist/css/nomotion.css"
+	},
+	"dependencies": {
+		"@fontsource-variable/outfit": "^5.3.0",
+		"@fontsource/dm-mono": "^5.3.0"
+	},
+	"peerDependencies": {
+		"react": ">=18",
+		"svelte": "^5.0.0"
+	},
+	"peerDependenciesMeta": {
+		"react": {
+			"optional": true
+		},
+		"svelte": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@sveltejs/package": "^2.5.0",
+		"@sveltejs/vite-plugin-svelte": "^7.1.2",
+		"@types/react": "^19.2.14",
+		"publint": "^0.3.0",
+		"react": "^19.2.6",
+		"svelte": "^5.56.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^5.9.3"
+	}
+}

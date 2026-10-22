@@ -1,0 +1,9 @@
+/* This site has no motion at all: nothing in the panel animates or transitions. */
+.ds,
+.ds *,
+.ds *::before,
+.ds *::after {
+	transition: none !important;
+	animation: none !important;
+	scroll-behavior: auto !important;
+}

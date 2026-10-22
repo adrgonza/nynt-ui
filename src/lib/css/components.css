@@ -1,0 +1,554 @@
+/*
+ * NYNT design system, framework agnostic component classes (ds-btn, ds-card, ds-field...).
+ * The same look as the Svelte components, for apps that are not Svelte (the React
+ * bindings in nynt-ui/react render these classes). Every selector is either under .ds
+ * or a ds- class, so nothing here reaches a public page that does not use them.
+ * Colour transitions live in motion.css; nomotion.css switches every transition off.
+ */
+
+/*
+ * Local resets: the host stylesheet must not leak into the panel. Only fonts and
+ * colours are reset here; spacing is left to the host reset (for example Tailwind preflight).
+ */
+.ds,
+.ds :where(h1, h2, h3, h4, p, label, legend, fieldset, ul, li, strong, span) {
+	font-family: var(--ds-font);
+	letter-spacing: var(--ds-tracking-normal);
+	text-transform: none;
+}
+.ds :where(h1, h2, h3, h4, p) {
+	color: inherit;
+	font-weight: inherit;
+}
+.ds :where(button, input, textarea, select) {
+	font-family: inherit;
+	letter-spacing: inherit;
+}
+
+/* Frame: pale canvas, one large white rounded container, generous padding. */
+.ds-canvas {
+	min-height: 100dvh;
+	background: var(--ds-canvas);
+	color: var(--ds-ink);
+}
+.ds-frame {
+	display: flex;
+	flex-direction: column;
+	min-height: 100dvh;
+	background: var(--ds-surface);
+}
+.ds-top {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--ds-space-3) var(--ds-space-4);
+	padding: var(--ds-space-6) var(--ds-space-5) var(--ds-space-4);
+}
+.ds-top-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--ds-space-2);
+	margin-left: auto;
+}
+.ds-content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-height: 0;
+	padding: var(--ds-space-2) var(--ds-space-5) var(--ds-space-8);
+}
+.ds-foot {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 var(--ds-space-5) var(--ds-space-6);
+}
+@media (min-width: 768px) {
+	.ds-canvas {
+		padding: var(--ds-space-4);
+	}
+	.ds-frame {
+		min-height: calc(100dvh - var(--ds-space-4) * 2);
+		border-radius: var(--ds-radius-2xl);
+		box-shadow: var(--ds-shadow-1);
+	}
+	.ds-top {
+		padding: var(--ds-space-8) var(--ds-space-10) var(--ds-space-6);
+	}
+	.ds-content {
+		padding: var(--ds-space-2) var(--ds-space-10) var(--ds-space-10);
+	}
+	.ds-foot {
+		padding: 0 var(--ds-space-10) var(--ds-space-8);
+	}
+}
+.ds-measure {
+	width: 100%;
+	max-width: 960px;
+	margin-inline: auto;
+}
+
+/* Login door: one white card centred on the canvas. */
+.ds-gate {
+	display: grid;
+	min-height: 100dvh;
+	grid-template-rows: 1fr auto;
+	place-items: center;
+	padding: var(--ds-space-4);
+	background: var(--ds-canvas);
+	color: var(--ds-ink);
+}
+.ds-door {
+	width: 100%;
+	max-width: var(--ds-measure-lg);
+	border-radius: var(--ds-radius-2xl);
+}
+.ds-gate .ds-foot {
+	justify-content: center;
+	padding: var(--ds-space-4) 0 var(--ds-space-2);
+}
+
+/* Type */
+.ds-eyebrow {
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-xs);
+}
+.ds-title {
+	font-size: var(--ds-text-2xl);
+	font-weight: var(--ds-weight-regular);
+	line-height: var(--ds-leading-tight);
+	letter-spacing: var(--ds-tracking-tight);
+	color: var(--ds-ink);
+}
+.ds-title-sm {
+	font-size: var(--ds-text-lg);
+	font-weight: var(--ds-weight-medium);
+	line-height: var(--ds-leading-tight);
+	letter-spacing: var(--ds-tracking-tight);
+	color: var(--ds-ink);
+}
+.ds-muted {
+	color: var(--ds-ink-4);
+	font-weight: var(--ds-weight-regular);
+}
+.ds-lede {
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-sm);
+}
+.ds-hint {
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-2xs);
+}
+.ds-msg {
+	display: flex;
+	align-items: center;
+	gap: var(--ds-space-2);
+	font-size: var(--ds-text-sm);
+}
+.ds-msg-ok {
+	color: var(--ds-accent-700);
+}
+.ds-msg-bad {
+	color: var(--ds-bad-ink);
+}
+.ds-dot {
+	width: 7px;
+	height: 7px;
+	flex-shrink: 0;
+	border-radius: var(--ds-radius-full);
+	background: currentColor;
+}
+.ds-section-label {
+	display: block;
+	margin-bottom: var(--ds-space-3);
+	color: var(--ds-ink);
+	font-size: var(--ds-text-base);
+	font-weight: var(--ds-weight-medium);
+	letter-spacing: var(--ds-tracking-tight);
+}
+
+/* Card */
+.ds-card {
+	position: relative;
+	display: block;
+	min-width: 0;
+	border: 0;
+	border-radius: var(--ds-radius-xl);
+	color: inherit;
+	text-align: left;
+}
+.ds-card.pad-sm {
+	padding: var(--ds-space-4);
+}
+.ds-card.pad-md {
+	padding: var(--ds-space-6);
+}
+.ds-card.pad-lg {
+	padding: var(--ds-space-8);
+}
+.ds-card.surface {
+	background: var(--ds-surface);
+	box-shadow: var(--ds-shadow-1);
+}
+.ds-card.tint {
+	background: var(--ds-accent-50);
+}
+.ds-card.sunken {
+	background: var(--ds-neutral-50);
+}
+
+/* Button */
+.ds-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--ds-space-2);
+	border: 0;
+	border-radius: var(--ds-radius-full);
+	font-weight: var(--ds-weight-medium);
+	white-space: nowrap;
+	text-decoration: none;
+	cursor: pointer;
+}
+.ds-btn.md {
+	height: var(--ds-control-height);
+	padding: 0 var(--ds-space-5);
+	font-size: var(--ds-text-sm);
+}
+.ds-btn.lg {
+	height: var(--ds-chip-lg);
+	padding: 0 var(--ds-space-6);
+	font-size: var(--ds-text-sm);
+}
+.ds-btn.sm {
+	height: var(--ds-chip-sm);
+	padding: 0 var(--ds-space-4);
+	font-size: var(--ds-text-xs);
+}
+.ds-btn.primary {
+	background: var(--ds-accent-600);
+	color: var(--ds-on-accent);
+	box-shadow: var(--ds-shadow-accent);
+}
+.ds-btn.secondary {
+	background: var(--ds-neutral-100);
+	color: var(--ds-ink);
+}
+.ds-btn.ghost,
+.ds-btn.danger {
+	background: transparent;
+	color: var(--ds-ink-3);
+	padding-inline: var(--ds-space-3);
+}
+.ds-btn.danger-soft {
+	background: color-mix(in srgb, var(--ds-bad) 12%, var(--ds-surface));
+	color: var(--ds-bad-ink);
+}
+.ds-btn.full {
+	width: 100%;
+}
+@media (hover: hover) {
+	.ds-btn.primary:hover:not(:disabled) {
+		background: var(--ds-accent-700);
+	}
+	.ds-btn.secondary:hover:not(:disabled) {
+		background: var(--ds-accent-50);
+		color: var(--ds-accent-700);
+	}
+	.ds-btn.ghost:hover:not(:disabled) {
+		color: var(--ds-ink);
+	}
+	.ds-btn.danger:hover:not(:disabled) {
+		color: var(--ds-bad-ink);
+	}
+}
+.ds-btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Icon button */
+.ds-ib {
+	display: inline-grid;
+	flex-shrink: 0;
+	place-items: center;
+	border: 0;
+	border-radius: var(--ds-radius-full);
+	padding: 0;
+	color: var(--ds-ink);
+	cursor: pointer;
+}
+.ds-ib.sm {
+	width: var(--ds-chip-sm);
+	height: var(--ds-chip-sm);
+}
+.ds-ib.md {
+	width: var(--ds-chip-md);
+	height: var(--ds-chip-md);
+}
+.ds-ib.soft {
+	background: var(--ds-neutral-100);
+}
+.ds-ib.ghost {
+	background: transparent;
+	color: var(--ds-ink-3);
+}
+@media (hover: hover) {
+	.ds-ib.soft:hover:not(:disabled),
+	.ds-ib.ghost:hover:not(:disabled) {
+		background: var(--ds-accent-50);
+		color: var(--ds-accent-700);
+	}
+	.ds-ib.ghost.bad:hover:not(:disabled) {
+		background: color-mix(in srgb, var(--ds-bad) 12%, var(--ds-surface));
+		color: var(--ds-bad-ink);
+	}
+}
+.ds-ib:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Icon chip */
+.ds-chip {
+	display: inline-grid;
+	flex-shrink: 0;
+	place-items: center;
+	overflow: hidden;
+	border-radius: var(--ds-radius-full);
+}
+.ds-chip.md {
+	width: var(--ds-chip-md);
+	height: var(--ds-chip-md);
+}
+.ds-chip.lg {
+	width: var(--ds-chip-lg);
+	height: var(--ds-chip-lg);
+}
+.ds-chip.accent {
+	background: var(--ds-accent-50);
+	color: var(--ds-accent-700);
+}
+.ds-chip.neutral {
+	background: var(--ds-neutral-100);
+	color: var(--ds-ink-2);
+}
+
+/* Pill */
+.ds-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ds-space-1);
+	border: 0;
+	border-radius: var(--ds-radius-full);
+	white-space: nowrap;
+	text-decoration: none;
+}
+.ds-pill.md {
+	height: var(--ds-chip-sm);
+	padding: 0 var(--ds-space-4);
+	font-size: var(--ds-text-xs);
+}
+.ds-pill.sm {
+	height: var(--ds-space-6);
+	padding: 0 var(--ds-space-3);
+	font-size: var(--ds-text-2xs);
+}
+.ds-pill.neutral {
+	background: var(--ds-neutral-100);
+	color: var(--ds-ink-2);
+}
+.ds-pill.accent {
+	background: var(--ds-accent-50);
+	color: var(--ds-accent-700);
+}
+.ds-pill.solid {
+	background: var(--ds-accent-600);
+	color: var(--ds-on-accent);
+}
+
+/* Field: text on a soft grey well, no border. */
+.ds-field-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ds-space-2);
+	min-width: 0;
+}
+.ds-field-label {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: var(--ds-space-1) var(--ds-space-3);
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-2xs);
+}
+.ds-field {
+	width: 100%;
+	min-width: 0;
+	border: 0;
+	border-radius: var(--ds-radius-sm);
+	background: var(--ds-neutral-50);
+	padding: var(--ds-space-2) var(--ds-space-3);
+	color: var(--ds-ink);
+	font-size: var(--ds-text-sm);
+	font-weight: var(--ds-weight-regular);
+	line-height: var(--ds-leading-normal);
+	box-shadow: none;
+}
+input.ds-field {
+	height: var(--ds-control-height);
+}
+input.ds-field.lg {
+	height: var(--ds-chip-lg);
+	border-radius: var(--ds-radius-full);
+	padding-inline: var(--ds-space-5);
+	font-size: var(--ds-text-md);
+}
+textarea.ds-field {
+	resize: none;
+	field-sizing: content;
+	min-height: calc(var(--ds-control-height) * 1.6);
+}
+/* A textarea that fills the remaining height of a one screen form (desktop only). */
+textarea.ds-field.fill {
+	field-sizing: fixed;
+	min-height: 12rem;
+}
+@media (min-width: 768px) {
+	textarea.ds-field.fill {
+		height: 100%;
+		min-height: 0;
+	}
+}
+.ds-field::placeholder {
+	color: var(--ds-ink-4);
+	opacity: 1;
+}
+.ds-field:focus {
+	outline: none;
+	background: var(--ds-surface);
+	box-shadow: var(--ds-shadow-focus);
+}
+
+/* Checkbox shown as a toggle pill. */
+.ds-check {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ds-space-2);
+	color: var(--ds-ink-2);
+	font-size: var(--ds-text-sm);
+	cursor: pointer;
+}
+.ds-check input {
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	accent-color: var(--ds-accent-600);
+}
+
+/* List row */
+.ds-row {
+	display: flex;
+	align-items: center;
+	gap: var(--ds-space-4);
+	min-width: 0;
+	border-radius: var(--ds-radius-md);
+	padding: var(--ds-space-2);
+	margin-inline: calc(var(--ds-space-2) * -1);
+}
+.ds-row-text {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	min-width: 0;
+}
+.ds-row-title {
+	overflow: hidden;
+	color: var(--ds-ink);
+	font-size: var(--ds-text-base);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ds-row-sub {
+	overflow: hidden;
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-2xs);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ds-row-trail {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: var(--ds-space-1);
+}
+
+/* Powered by NYNT: the studio wordmark style, small and quiet. */
+.ds-powered {
+	color: var(--ds-ink-4);
+	font-family: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.ds-powered:hover {
+	color: var(--ds-ink);
+}
+
+/* Plain label wrapping its control, text first (the manage forms use this shape). */
+.ds-label {
+	display: grid;
+	gap: var(--ds-space-2);
+	min-width: 0;
+	color: var(--ds-ink-3);
+	font-size: var(--ds-text-2xs);
+	font-weight: var(--ds-weight-regular);
+}
+
+/* Image slot: a rounded grey well that becomes the thumbnail. */
+.ds-thumb {
+	display: grid;
+	width: var(--ds-chip-lg);
+	height: var(--ds-chip-lg);
+	flex-shrink: 0;
+	place-items: center;
+	overflow: hidden;
+	border: 0;
+	border-radius: var(--ds-radius-sm);
+	background: var(--ds-neutral-100);
+	padding: 0;
+	color: var(--ds-ink-3);
+	cursor: pointer;
+}
+.ds-thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.ds-thumb:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+.ds-confirm {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--ds-space-2);
+	color: var(--ds-ink-2);
+	font-size: var(--ds-text-sm);
+}
+
+/* Wordmark: the NYNT label style, DM Mono uppercase 12px. */
+.ds-wordmark {
+	font-family: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.5;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}

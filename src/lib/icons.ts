@@ -1,0 +1,42 @@
+/** Soft line glyphs on a 24px grid. Static markup only, shared by the Svelte and React icons. */
+export const iconPaths = {
+	grid: '<rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="3.25"/>',
+	swatch: '<circle cx="9" cy="9" r="5"/><circle cx="15" cy="15" r="5"/>',
+	logout: '<path d="M14 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h7"/><path d="m16 8 4 4-4 4"/><path d="M20 12H10"/>',
+	search: '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4-4"/>',
+	refresh: '<path d="M19 12a7 7 0 1 1-2.05-4.95"/><path d="M19 5v4h-4"/>',
+	left: '<path d="m14 6-6 6 6 6"/>',
+	right: '<path d="m10 6 6 6-6 6"/>',
+	up: '<path d="m7 14 5-5 5 5"/>',
+	down: '<path d="m7 10 5 5 5-5"/>',
+	sort: '<path d="m8 10 4-4 4 4"/><path d="m8 14 4 4 4-4"/>',
+	external: '<path d="M8 16 16 8"/><path d="M9.5 8H16v6.5"/>',
+	check: '<path d="M19 7 10 16l-4-4"/>',
+	plus: '<path d="M12 6v12"/><path d="M6 12h12"/>',
+	close: '<path d="m7 7 10 10"/><path d="M17 7 7 17"/>',
+	more: '<circle cx="6" cy="12" r="0.6"/><circle cx="12" cy="12" r="0.6"/><circle cx="18" cy="12" r="0.6"/>',
+	globe: '<circle cx="12" cy="12" r="8"/><path d="M4 12h16"/><path d="M12 4c2.2 2.3 3.2 5 3.2 8s-1 5.7-3.2 8c-2.2-2.3-3.2-5-3.2-8s1-5.7 3.2-8Z"/>',
+	lock: '<rect x="5.5" y="10.5" width="13" height="9" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>',
+	pulse: '<path d="M3.5 12h4l2-5 4 10 2-5h5"/>',
+	layers: '<path d="m12 4 8 4.5-8 4.5-8-4.5Z"/><path d="m4 13 8 4.5 8-4.5"/>',
+	trend: '<path d="m4 16 5-5 3.5 3.5L20 7"/><path d="M15 7h5v5"/>',
+	todo: '<circle cx="12" cy="12" r="8"/><path d="m8.5 12 2.5 2.5 4.5-5"/>',
+	commit: '<circle cx="12" cy="12" r="3.2"/><path d="M3.5 12h5.3"/><path d="M15.2 12h5.3"/>',
+	note: '<path d="M7 4.5h7.5L18 8v11.5H7Z"/><path d="M10 12h5"/><path d="M10 15.5h3.5"/>',
+	rocket: '<path d="M12 19c-1.6-1.6-2.5-4-2.5-6.8C9.5 8.5 11 5.6 12 4.5c1 1.1 2.5 4 2.5 7.7 0 2.8-.9 5.2-2.5 6.8Z"/><path d="M9.6 14.5 7 17v2.5h2.2"/><path d="m14.4 14.5 2.6 2.5v2.5h-2.2"/>',
+	wallet: '<rect x="4" y="6.5" width="16" height="12" rx="3"/><path d="M4 10h16"/><path d="M15.5 14.5h1"/>',
+	eye: '<path d="M3.5 12C5.5 8 8.5 6 12 6s6.5 2 8.5 6c-2 4-5 6-8.5 6s-6.5-2-8.5-6Z"/><circle cx="12" cy="12" r="2.5"/>',
+	key: '<circle cx="8.5" cy="15.5" r="3.5"/><path d="m11 13 7.5-7.5"/><path d="m16 8 2.5 2.5"/>',
+	calendar: '<rect x="4.5" y="6" width="15" height="13.5" rx="3"/><path d="M4.5 10.5h15"/><path d="M9 4v3"/><path d="M15 4v3"/>',
+	alert: '<path d="M12 4.5 20 19H4Z"/><path d="M12 10v4"/><path d="M12 16.5v.1"/>',
+	bolt: '<path d="M13 3.5 6 13.5h5.5L11 20.5l7-10h-5.5Z"/>',
+	home: '<path d="M4.5 11 12 5l7.5 6"/><path d="M6.5 9.5v9h11v-9"/>',
+	user: '<circle cx="12" cy="9" r="3.5"/><path d="M5.5 19c1.2-3 3.6-4.5 6.5-4.5s5.3 1.5 6.5 4.5"/>',
+	receipt: '<path d="M6.5 4h11v16l-2.75-1.6L12 20l-2.75-1.6L6.5 20Z"/><path d="M9.5 9h5"/><path d="M9.5 12.5h5"/>',
+	image: '<rect x="4" y="5" width="16" height="14" rx="3"/><circle cx="9" cy="10" r="1.5"/><path d="m20 16-4.5-4.5L7 19"/>',
+	trash: '<path d="M5.5 7.5h13"/><path d="M9.5 7.5V5.5h5v2"/><path d="M7 7.5 8 19h8l1-11.5"/>',
+	grip: '<circle cx="9" cy="6" r="0.9"/><circle cx="15" cy="6" r="0.9"/><circle cx="9" cy="12" r="0.9"/><circle cx="15" cy="12" r="0.9"/><circle cx="9" cy="18" r="0.9"/><circle cx="15" cy="18" r="0.9"/>'
+};
+
+export type IconName = keyof typeof iconPaths;
+export const iconNames = Object.keys(iconPaths) as IconName[];
