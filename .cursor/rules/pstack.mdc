@@ -1,0 +1,7 @@
+---
+description: Quality bar for every agent working in this repo
+alwaysApply: true
+---
+Skills from pstack live in `.cursor/skills/`. For any non-trivial code change, read `.cursor/skills/poteto-mode/SKILL.md` and follow it: name the data shape first, make the smallest change that solves the problem, no abstractions nobody asked for, and prove it works on the real artifact (tests, build, the running app or preview) before saying done. Use the other pstack skills (architect, tdd, blast-radius, interrogate, unslop) when the task earns them, not by default.
+
+Never use em dashes or en dashes in code, comments, copy, commits or PR text. Use a period, comma or parentheses instead.
